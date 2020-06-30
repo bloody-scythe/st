@@ -1,7 +1,7 @@
-st - simple terminal
---------------------
-st is a simple terminal emulator for X which sucks less.
+My fork of ST - the simple terminal
 
+Link to the original:
+https://st.suckless.org/
 
 Requirements
 ------------
@@ -17,16 +17,6 @@ Afterwards enter the following command to build and install st (if
 necessary as root):
 
     make clean install
-
-
-Running st
-----------
-If you did not install st with make clean install, you must compile
-the st terminfo entry with the following command:
-
-    tic -sx st.info
-
-See the man page for additional details.
 
 Credits
 -------
