@@ -1,6 +1,7 @@
 # List installed patches
 ========================
 
-Alpha - https://st.suckless.org/patches/alpha/
-Alpha focus highlight - https://st.suckless.org/patches/alpha_focus_highlight/
-Anysize - https://st.suckless.org/patches/anysize/
+_Alpha_ - https://st.suckless.org/patches/alpha/
+_Alpha_ focus highlight - https://st.suckless.org/patches/alpha_focus_highlight/
+_Anysize_ - https://st.suckless.org/patches/anysize/
+_Delkey_ - https://st.suckless.org/patches/delkey/
