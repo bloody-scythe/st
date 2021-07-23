@@ -59,6 +59,7 @@ static void zoom(const Arg *);
 static void zoomabs(const Arg *);
 static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
+static void invert(const Arg *);
 
 /* config.h for applying patches and the configuration. */
 #include "config.h"
@@ -257,7 +258,27 @@ static char *opt_title = NULL;
 
 static int focused = 0;
 
+static int invertcolors = 0;
 static int oldbutton = 3; /* button event on startup: 3 = release */
+
+void
+invert(const Arg *dummy)
+{
+	invertcolors = !invertcolors;
+	redraw();
+}
+
+Color
+invertedcolor(Color *clr) {
+	XRenderColor rc;
+	Color inverted;
+	rc.red = ~clr->color.red;
+	rc.green = ~clr->color.green;
+	rc.blue = ~clr->color.blue;
+	rc.alpha = clr->color.alpha;
+	XftColorAllocValue(xw.dpy, xw.vis, xw.cmap, &rc, &inverted);
+	return inverted;
+}
 
 void
 clipcopy(const Arg *dummy)
@@ -840,9 +861,11 @@ xsetcolorname(int x, const char *name)
 void
 xclear(int x1, int y1, int x2, int y2)
 {
-	XftDrawRect(xw.draw,
-			&dc.col[IS_SET(MODE_REVERSE)? defaultfg : defaultbg],
-			x1, y1, x2-x1, y2-y1);
+	Color c;
+	c = dc.col[IS_SET(MODE_REVERSE)? defaultfg : defaultbg];
+	if (invertcolors)
+		c = invertedcolor(&c);
+	XftDrawRect(xw.draw, &c, x1, y1, x2-x1, y2-y1);
 }
 
 void
@@ -1460,6 +1483,13 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 	if (base.mode & ATTR_INVISIBLE)
 		fg = bg;
 
+	if (invertcolors) {
+		revfg = invertedcolor(fg);
+		revbg = invertedcolor(bg);
+		fg = &revfg;
+		bg = &revbg;
+	}
+
 	/* Intelligent cleaning up of the borders. */
 	if (x == 0) {
 		xclear(0, (y == 0)? 0 : winy, win.vborderpx,
@@ -1551,6 +1581,9 @@ xdrawcursor(int cx, int cy, Glyph g, int ox, int oy, Glyph og)
 		}
 		drawcol = dc.col[g.bg];
 	}
+
+	if (invertcolors)
+		drawcol = invertedcolor(&drawcol);
 
 	/* draw the new one */
 	if (IS_SET(MODE_FOCUSED)) {
