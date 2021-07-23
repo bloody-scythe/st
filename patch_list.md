@@ -9,3 +9,4 @@ _Desktop Entry_ - https://st.suckless.org/patches/desktopentry/
 _Invert_ - https://st.suckless.org/patches/invert/
 Newterm - https://st.suckless.org/patches/newterm/
 _Scrollback_ - https://st.suckless.org/patches/scrollback/
+_Spoiler_ - https://st.suckless.org/patches/spoiler/
