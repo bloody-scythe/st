@@ -10,3 +10,4 @@ _Invert_ - https://st.suckless.org/patches/invert/
 Newterm - https://st.suckless.org/patches/newterm/
 _Scrollback_ - https://st.suckless.org/patches/scrollback/
 _Spoiler_ - https://st.suckless.org/patches/spoiler/
+_Undercurl_ - https://st.suckless.org/patches/undercurl/
