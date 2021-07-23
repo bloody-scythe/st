@@ -8,3 +8,4 @@ _Delkey_ - https://st.suckless.org/patches/delkey/
 _Desktop Entry_ - https://st.suckless.org/patches/desktopentry/
 _Invert_ - https://st.suckless.org/patches/invert/
 Newterm - https://st.suckless.org/patches/newterm/
+_Scrollback_ - https://st.suckless.org/patches/scrollback/
